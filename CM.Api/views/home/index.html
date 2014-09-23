@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <!-- http://davidbcalhoun.com/2010/viewport-metatag -->
+    <meta charset="utf-8"> 
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Notes</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="/content/styles/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/content/styles/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/content/styles/loading-bar.css">
+
+    <script type="text/javascript" src="/scripts/angular.js"></script>
+    <script type="text/javascript" src="/scripts/angular-resource.js"></script>
+    <script type="text/javascript" src="/scripts/angular-ui-router.js"></script>
+    <script type="text/javascript" src="/scripts/angular-ui/ui-bootstrap-tpls.js"></script>
+
+    <script type="text/javascript" src="/angular/app/notes/notes.js"></script>
+    <script type="text/javascript" src="/angular/app/app.js"></script>
+    <style>
+    body { padding-top: 60px; }
+    </style>
+</head>
+<body data-ng-app="cm">
+    <div class="container">
+        <div class="row" data-ng-repeat="message in messages">
+            <div class="col-xs-12">
+                <div class="alert alert-{{message.type}}">
+                    {{message.message}}
+                    <button type="button" class="close" ng-click="removeMessage($index)">&times;</button>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="error">
+            <div class="alert alert-danger">
+                <h1>An error occurred!</h1>
+                {{error.UserMessage}}
+            </div>
+        </div>
+        <div data-ui-view></div>
+        <div class="row">
+            <div class="col-xs-12">
+                <hr />
+                <footer>
+                    <p>A NancyFX, MongoDB, AngularJS Tutorial &copy; 2014 <a href="http://www.menge.io">Christoph Menge</a>.</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

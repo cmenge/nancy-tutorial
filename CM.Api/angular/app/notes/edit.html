@@ -1,0 +1,26 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <h1>Create Note</h1>
+
+        <form class="form-horizontal" data-ng-submit="save()">
+            <div class="form-group">
+                <label class="col-sm-2" for="Title"><span>Title</span> *</label>
+                <div class="col-sm-4">
+                    <input class="form-control" type="text" data-ng-model="model.Title" name="Title" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2" for="Text">Note</label>
+                <div class="col-sm-4">
+                    <textarea data-ng-model="model.Text" name="Text"></textarea>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button ui-sref="notes.list" type="button" class="btn btn-default">Cancel</button>
+                <button class="btn btn-primary">OK</button>
+            </div>
+        </form>
+    </div>
+</div>

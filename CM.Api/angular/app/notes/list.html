@@ -1,0 +1,38 @@
+﻿<div class="row">
+    <div class="col-sm-12" style="margin-bottom: 20px;">
+        <h1 style="display: inline;">Notes</h1>
+
+        <a class="pull-right btn btn-default" ui-sref="notes.create"><i class="glyphicon glyphicon-plus"></i> <span>New Note</span></a>
+    </div>
+</div>
+
+<div class="row" ng-cloak>
+    <div class="col-xs-12">
+        <div ng-show="data.length == 0" style="text-align:center; padding: 40px; vertical-align: middle;">
+            <div style="background-image: url('/content/images/spinner-64.gif'); width: 64px; height: 64px; margin: 20px; display: inline-block;"></div><br/>
+            <span>Loading&hellip;</span>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Created</th>
+                    <th>Text</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tr data-ng-repeat="row in data | filter:nameFilter | filter:roleFilter:true" style="padding: 10px; margin: 20px 0; background: #fafafe;">
+                <td><strong>{{row.Title}}</strong></td>
+                <td>{{row.Created | date}}</td>
+                <td>{{row.Text}}</td>
+                <td>
+                    <a class="btn btn-sm btn-default" ui-sref="notes.edit({ noteId : row.Id })"><i class="glyphicon glyphicon-cog"></i> <span>Edit</span></a>
+                    <a ng-click="deleteNote($index)" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-trash"></i> <span>Delete</span></a>
+                </td>
+            </tr>
+        </table>
+        <div class="clearfix"></div>
+    </div>
+</div>
