@@ -16,7 +16,7 @@ NotesBaseController.$inject = ['$scope'];
 
 var NotesEditController = function ($scope, Note, $stateParams) {
     $scope.model = Note.get({ noteId: $stateParams.noteId });
-
+    
     $scope.save = function () {
         $scope.model.$update({}, function () {
             $scope.showMessage({ message: "Saved!", type: "success" });
@@ -29,9 +29,8 @@ var NotesCreateController = function ($scope, $http, $state, Note) {
     $scope.model = new Note();
     
     $scope.save = function () {
-        $scope.model.$save({}, function () {
+        $scope.model.$save({}, function (data) {
             $scope.showMessage({ message: "Note Created!", type: "success" });
-            $scope.data = data;
             $state.transitionTo("notes.list");
         });
     };
@@ -40,9 +39,13 @@ var NotesCreateController = function ($scope, $http, $state, Note) {
 NotesCreateController.$inject = ['$scope', '$http', '$state', 'Note'];
 
 var NotesListController = function ($scope, Note) {
-    $scope.data = Note.query({}, function () { }, function (error) {
+
+    $scope.data = Note.query({}, function () {
+        console.log("done. resolved: ", $scope.data.$resolved);
+    }, function (error) {
         $scope.error = error.data;
     });
+    console.log("resolved: ", $scope.data.$resolved);
     $scope.deleteNote = function (index) {
         $scope.data[index].$delete({}, function () {
             $scope.data.splice(index, 1);

@@ -8,7 +8,7 @@
 
 <div class="row" ng-cloak>
     <div class="col-xs-12">
-        <div ng-show="data.length == 0" style="text-align:center; padding: 40px; vertical-align: middle;">
+        <div ng-show="!data.$resolved" style="text-align:center; padding: 40px; vertical-align: middle;">
             <div style="background-image: url('/content/images/spinner-64.gif'); width: 64px; height: 64px; margin: 20px; display: inline-block;"></div><br/>
             <span>Loading&hellip;</span>
         </div>

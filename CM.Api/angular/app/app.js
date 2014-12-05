@@ -3,18 +3,9 @@
 var baseUrl = "/";
 var apiBaseUrl = baseUrl + "api/v1/";
 
-var ErrorController = function ($scope, $modalInstance, err) {
-    $scope.error = err;
-    $scope.close = function () {
-        $modalInstance.close();
-    };
-};
-ErrorController.$inject = ["$scope", "$modalInstance", "err"];
+var cm = angular.module('cm', ['ui.router', 'ui.bootstrap', 'ngResource', 'cm.notes' ]);
 
-var cm = angular.module('cm', ['ui.router', 'ui.bootstrap', 'cm.notes' ]);
-
-cm.
-  config(['$httpProvider', '$modalProvider', '$urlRouterProvider', function ($httpProvider, $modalProvider, $urlRouterProvider) {
+cm.config(['$httpProvider', '$modalProvider', '$urlRouterProvider', function ($httpProvider, $modalProvider, $urlRouterProvider) {
       $urlRouterProvider
         // If the url is ever invalid, e.g. '/asdf', then redirect to '/' aka the home state
         .otherwise('/');
@@ -63,3 +54,11 @@ cm.
           });
       };
   }]);
+
+var ErrorController = function ($scope, $modalInstance, err) {
+    $scope.error = err;
+    $scope.close = function () {
+        $modalInstance.close();
+    };
+};
+ErrorController.$inject = ["$scope", "$modalInstance", "err"];
